@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-
 namespace GroenBestelling
 {
     public class Artikel
@@ -53,17 +51,65 @@ namespace GroenBestelling
 
     class Program
     {
+        static string vraagArtikelnummer()
+        {
+            Console.WriteLine("Artikelnummer van zes cijfers opgeven.");
+            Console.WriteLine("De eerste vier cijfers van het artikelnummer moet een jaartal vormen groter dan 1979.");
+            Console.WriteLine("Het jaartal mag niet groter zijn dan het huidige jaartal.");
+            return Console.ReadLine();
+        }
+
+        static string vraagPeildatum()
+        {
+            Console.WriteLine("Geef peildatum op in formaat jjjj/mm/dd: ");
+            return Console.ReadLine();
+        }
+
+        static Double vraagPrijs()
+        {
+            Console.WriteLine("Geef de prijs op van het artikel: ");
+            return (double.Parse(Console.ReadLine()));
+        }
+
+        static void vraagArtikelinfo(ref List<Artikel> tartikelen)
+        {
+            var artnummer = vraagArtikelnummer();
+            var peildatum = DateTime.Parse(vraagPeildatum());
+            var prijs = vraagPrijs();
+            var nieuwartikel = new Artikel(artnummer, peildatum, prijs);
+            tartikelen.Add(nieuwartikel);
+        }
+
         static void Main(string[] args)
         {
-            DateTime peildatum = DateTime.Parse("2018/08/06");
-            var artikel1 = new Artikel("198047", peildatum, 42.05);
-            var artikel2 = new Artikel("201738", peildatum, 20.40);
-            var artikel3 = new Artikel("200068", peildatum, 30.65);
-            var artikel4 = new Artikel("201433", peildatum, 21.35);
-            Console.WriteLine(artikel1);
-            Console.WriteLine(artikel2);
-            Console.WriteLine(artikel3);
-            Console.WriteLine(artikel4);
+            List<Artikel> artikelen = new List<Artikel>();
+            var meerartikelen = true;
+
+            while (meerartikelen == true)
+            {
+                vraagArtikelinfo(ref artikelen);
+                Console.Write("Wil je meer artikelen invoeren? (ja of nee) ");
+                if (Console.ReadLine() == "nee")
+                {
+                    meerartikelen = false;
+                }
+            }
+            
+
+            foreach(Artikel artk in artikelen)
+            {
+                Console.WriteLine(artk);
+            }
+
+            //DateTime peildatum = DateTime.Parse(vraagPeildatum());
+            //var artikel1 = new Artikel(vraagArtikelnummer(), peildatum, vraagPrijs());
+            //var artikel2 = new Artikel("201738", peildatum, 20.40);
+            //var artikel3 = new Artikel("200068", peildatum, 30.65);
+            //var artikel4 = new Artikel("201433", peildatum, 21.35);
+            //Console.WriteLine(artikel1);
+            //Console.WriteLine(artikel2);
+            //Console.WriteLine(artikel3);
+            //Console.WriteLine(artikel4);
         }
     }
 }
