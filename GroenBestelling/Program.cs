@@ -83,6 +83,7 @@ namespace GroenBestelling
         static void Main(string[] args)
         {
             List<Artikel> artikelen = new List<Artikel>();
+            //FIXME List datastructuur vervangen door Dictionary
             var meerartikelen = true;
 
             while (meerartikelen == true)
@@ -95,21 +96,19 @@ namespace GroenBestelling
                 }
             }
             
-
             foreach(Artikel artk in artikelen)
             {
                 Console.WriteLine(artk);
             }
 
-            //DateTime peildatum = DateTime.Parse(vraagPeildatum());
-            //var artikel1 = new Artikel(vraagArtikelnummer(), peildatum, vraagPrijs());
-            //var artikel2 = new Artikel("201738", peildatum, 20.40);
-            //var artikel3 = new Artikel("200068", peildatum, 30.65);
-            //var artikel4 = new Artikel("201433", peildatum, 21.35);
-            //Console.WriteLine(artikel1);
-            //Console.WriteLine(artikel2);
-            //Console.WriteLine(artikel3);
-            //Console.WriteLine(artikel4);
+            Double bedrag = 0.0;
+
+            foreach(Artikel artk in artikelen)
+            {
+                bedrag = bedrag + artk.Subtotaal;
+            }
+
+            Console.WriteLine("Het verschuldigde bedrag voor de artikelen bedraag: {0}", bedrag);
         }
     }
 }
