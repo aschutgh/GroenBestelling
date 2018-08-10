@@ -26,18 +26,9 @@ namespace GroenBestelling
             TimeSpan td = Peildatum - Productiedatum;
             int dagenoud = (int)Math.Truncate(td.TotalDays);
             Leeftijdskorting = 0.0;
-            if (dagenoud >= (2*365) && (dagenoud < 3*365))
-            {
-                Leeftijdskorting = 0.05;
-            }
-            if (dagenoud >= (3*365) && (dagenoud < 5*365))
-            {
-                Leeftijdskorting = 0.10;
-            }
-            if (dagenoud >= (5*365))
-            {
-                Leeftijdskorting = 0.25;
-            }
+            if (dagenoud >= (2*365) && (dagenoud < 3*365)) Leeftijdskorting = 0.05;
+            if (dagenoud >= (3*365) && (dagenoud < 5*365)) Leeftijdskorting = 0.10;
+            if (dagenoud >= (5*365)) Leeftijdskorting = 0.25;
             Extrakorting = (int.Parse(Artikelnummer.Substring(4, 1)) % 2) == 0 ? 0.02 : 0.0;
             Subtotaal = (Prijs * (1 - Leeftijdskorting)) * (1 - Extrakorting);
         }
