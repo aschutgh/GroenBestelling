@@ -108,7 +108,7 @@ namespace GroenBestelling
                 bedrag = bedrag + artk.Subtotaal;
             }
 
-            Console.WriteLine("Het verschuldigde bedrag voor de artikelen bedraag: {0}", bedrag);
+            Console.WriteLine("Het verschuldigde bedrag voor de artikelen bedraagt: {0}", bedrag);
         }
     }
 }
